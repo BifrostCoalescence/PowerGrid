@@ -189,7 +189,7 @@ public class ModdedItems {
     public static final ItemEntry<SequencedAssemblyItem> INCOMPLETE_UNETCHED_CONTROL_PANEL = sequencedIngredientBuilder("incomplete_unetched_control_panel")
             .tag(ModdedTags.Item.CIRCUIT_SCHEMATIC_HOLDER.tag)
             .register();
-    public static final ItemEntry<IncompleteCircuitItem> INCOMPLETE_CIRCUIT = REGISTRATE.item("incomplete_control_panel", IncompleteControlPanelItem::new)
+    public static final ItemEntry<IncompleteControlPanelItem> INCOMPLETE_CONTROL_PANEL = REGISTRATE.item("incomplete_control_panel", IncompleteControlPanelItem::new)
             .tag(ModdedTags.Item.CIRCUIT_SCHEMATIC_HOLDER.tag)
             .register();
     public static final ItemEntry<SequencedAssemblyItem> INCOMPLETE_UNETCHED_CIRCUIT = sequencedIngredientBuilder("incomplete_unetched_circuit")

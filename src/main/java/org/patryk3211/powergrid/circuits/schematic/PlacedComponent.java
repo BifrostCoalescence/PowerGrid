@@ -274,4 +274,8 @@ public class PlacedComponent {
         }
         return Optional.empty();
     }
+
+    public boolean controlPanel() {
+        return true;
+    }
 }

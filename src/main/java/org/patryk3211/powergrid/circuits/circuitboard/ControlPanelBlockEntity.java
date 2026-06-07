@@ -59,8 +59,8 @@ import org.patryk3211.powergrid.utility.Lang;
 
 import java.util.*;
 
-import static org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlock.HORIZONTAL_FACING;
-import static org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlock.ROTATION;
+import static org.patryk3211.powergrid.circuits.circuitboard.ControlPanelBlock.HORIZONTAL_FACING;
+import static org.patryk3211.powergrid.circuits.circuitboard.ControlPanelBlock.ROTATION;
 
 public class ControlPanelBlockEntity extends ElectricBlockEntity implements IElectric, IHaveGoggleInformation, ISchematicHolder, ElectricBehaviour.SyncAppender {
     private CircuitSchematic schematic = new CircuitSchematic();
@@ -279,7 +279,7 @@ public class ControlPanelBlockEntity extends ElectricBlockEntity implements IEle
         var state = getBlockState();
         for(var orientation : Orientation.values()) {
             var dir = ControlPanelBlock.getDirection(state, orientation);
-            var opt = level.getBlockEntity(worldPosition.relative(dir), ModdedBlockEntities.CIRCUIT_BOARD.get());
+            var opt = level.getBlockEntity(worldPosition.relative(dir), ModdedBlockEntities.CONTROL_PANEL.get());
             if(opt.isEmpty())
                 continue;
             var be = opt.get();

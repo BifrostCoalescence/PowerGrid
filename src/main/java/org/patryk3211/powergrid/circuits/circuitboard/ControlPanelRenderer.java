@@ -25,12 +25,12 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import org.patryk3211.powergrid.circuits.components.IRenderedComponent;
 
 @Environment(EnvType.CLIENT)
-public class CircuitBoardRenderer extends SafeBlockEntityRenderer<CircuitBoardBlockEntity> {
-    public CircuitBoardRenderer(BlockEntityRendererProvider.Context context) {
+public class ControlPanelRenderer extends SafeBlockEntityRenderer<ControlPanelBlockEntity> {
+    public ControlPanelRenderer(BlockEntityRendererProvider.Context context) {
     }
 
     @Override
-    protected void renderSafe(CircuitBoardBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
+    protected void renderSafe(ControlPanelBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
         var components = be.getComponents(IRenderedComponent.class);
         if(components.isEmpty())
             return;
@@ -43,8 +43,8 @@ public class CircuitBoardRenderer extends SafeBlockEntityRenderer<CircuitBoardBl
             var rendered = (IRenderedComponent) placed.component;
             stack.pushPose()
                     .center()
-                    .rotateYDegrees(CircuitBoardBlock.getAngleY(state))
-                    .rotateXDegrees(CircuitBoardBlock.getAngleX(state))
+                    .rotateYDegrees(ControlPanelBlock.getAngleY(state))
+                    .rotateXDegrees(ControlPanelBlock.getAngleX(state))
                     .uncenter()
                     .translate(placed.x / 16f, 4 / 16f, placed.y / 16f);
             rendered.render(be, placed, partialTicks, ms, bufferSource, light, overlay);

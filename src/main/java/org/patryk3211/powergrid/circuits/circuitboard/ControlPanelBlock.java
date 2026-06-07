@@ -142,13 +142,13 @@ public class ControlPanelBlock extends ElectricBlock implements IBE<ControlPanel
     }
 
     public static int getAngleX(BlockState state) {
-        if(!(state.getBlock() instanceof CircuitBoardBlock))
+        if(!(state.getBlock() instanceof ControlPanelBlock))
             return 0;
         return state.getValue(ROTATION) * 90;
     }
 
     public static int getAngleY(BlockState state) {
-        if(!(state.getBlock() instanceof CircuitBoardBlock))
+        if(!(state.getBlock() instanceof ControlPanelBlock))
             return 0;
         int angle = switch(state.getValue(HORIZONTAL_FACING)) {
             case NORTH -> 0;
@@ -388,13 +388,13 @@ public class ControlPanelBlock extends ElectricBlock implements IBE<ControlPanel
     }
 
     @Override
-    public Class<CircuitBoardBlockEntity> getBlockEntityClass() {
-        return CircuitBoardBlockEntity.class;
+    public Class<ControlPanelBlockEntity> getBlockEntityClass() {
+        return ControlPanelBlockEntity.class;
     }
 
     @Override
-    public BlockEntityType<? extends CircuitBoardBlockEntity> getBlockEntityType() {
-        return ModdedBlockEntities.CIRCUIT_BOARD.get();
+    public BlockEntityType<? extends ControlPanelBlockEntity> getBlockEntityType() {
+        return ModdedBlockEntities.CONTROL_PANEL.get();
     }
 
     @Override

@@ -173,7 +173,7 @@ public abstract class Component {
 
     }
 
-    public final float baseY(@NotNull PlacedComponent placed) {
+    public static final float baseY(@NotNull PlacedComponent placed) {
         return placed.controlPanel() ? 4 / 16f : 2 / 16f;
     }
 
