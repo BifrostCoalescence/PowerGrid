@@ -48,6 +48,7 @@ import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlock;
+import org.patryk3211.powergrid.circuits.circuitboard.ControlPanelBlock;
 import org.patryk3211.powergrid.circuits.editor.CircuitDesignTableBlock;
 import org.patryk3211.powergrid.config.CResistance;
 import org.patryk3211.powergrid.config.CStress;
@@ -607,6 +608,25 @@ public class ModdedBlocks {
                         .withPool(LootPool.lootPool()
                                 .when(ExplosionCondition.survivesExplosion())
                                 .add(LootItem.lootTableItem(ModdedBlocks.CIRCUIT_BOARD)))
+                        .apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY)
+                                .copy("Schematic", "Schematic", CopyNbtFunction.MergeStrategy.REPLACE)
+                                .copy("Thermal", "Thermal", CopyNbtFunction.MergeStrategy.REPLACE))
+            ))
+            .item()
+                .defaultModel()
+                .tag(ModdedTags.Item.CIRCUIT_SCHEMATIC_HOLDER.tag)
+                .build()
+            .register();
+
+    public static final BlockEntry<ControlPanelBlock> CONTROL_PANEL = REGISTRATE.block("control_panel", ControlPanelBlock::new)
+            .blockstate(controlPanel())
+            .initialProperties(SharedProperties::stone)
+            .transform(pickaxeOnly())
+            .loot((tables, block) ->
+                    tables.add(block, LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .when(ExplosionCondition.survivesExplosion())
+                                .add(LootItem.lootTableItem(ModdedBlocks.CONTROL_PANEL)))
                         .apply(CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY)
                                 .copy("Schematic", "Schematic", CopyNbtFunction.MergeStrategy.REPLACE)
                                 .copy("Thermal", "Thermal", CopyNbtFunction.MergeStrategy.REPLACE))

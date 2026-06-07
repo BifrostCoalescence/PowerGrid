@@ -45,8 +45,6 @@ import java.util.List;
 public abstract class Component {
     public static final StringProperty LABEL = new StringProperty(PowerGrid.MOD_ID, "label");
 
-    public static final float BASE_Y = 2 / 16f;
-
     private final ComponentFootprint footprint;
     private final ImmutableList<ComponentProperty<?>> properties;
 
@@ -173,6 +171,10 @@ public abstract class Component {
      */
     public void dataFixup(@NotNull CompoundTag tag) {
 
+    }
+
+    public final float baseY(@NotNull PlacedComponent placed) {
+        return placed.controlPanel() ? 4 / 16f : 2 / 16f;
     }
 
     public static class FloatPair {

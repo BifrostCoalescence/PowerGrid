@@ -19,6 +19,8 @@ import com.simibubi.create.content.kinetics.base.ShaftVisual;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlockEntity;
 import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardRenderer;
+import org.patryk3211.powergrid.circuits.circuitboard.ControlPanelBlockEntity;
+import org.patryk3211.powergrid.circuits.circuitboard.ControlPanelRenderer;
 import org.patryk3211.powergrid.circuits.editor.CircuitDesignTableBlockEntity;
 import org.patryk3211.powergrid.electricity.basinheater.BasinHeaterBlockEntity;
 import org.patryk3211.powergrid.electricity.battery.MultiBlockBatteryEntity;
@@ -287,6 +289,12 @@ public class ModdedBlockEntities {
             REGISTRATE.blockEntity("circuit_board", CircuitBoardBlockEntity::new)
                     .validBlock(ModdedBlocks.CIRCUIT_BOARD)
                     .renderer(() -> CircuitBoardRenderer::new)
+                    .register();
+    
+    public static final BlockEntityEntry<ControlPanelBlockEntity> CONTROL_PANEL =
+            REGISTRATE.blockEntity("control_panel", ControlPanelBlockEntity::new)
+                    .validBlock(ModdedBlocks.CONTROL_PANEL)
+                    .renderer(() -> ControlPanelRenderer::new)
                     .register();
 
     public static final BlockEntityEntry<DeviceConnectorBlockEntity> DEVICE_CONNECTOR =

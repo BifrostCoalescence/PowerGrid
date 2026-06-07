@@ -31,8 +31,8 @@ public interface IInteractableComponent {
     static VoxelShape extrudedFootprint(@NotNull PlacedComponent placed, float height) {
         var footprint = placed.footprint();
         return Shapes.box(
-                placed.x / 16f, Component.BASE_Y, placed.y / 16f,
-                (placed.x + footprint.getWidth()) / 16f, Component.BASE_Y + height, (placed.y + footprint.getHeight()) / 16f
+                placed.x / 16f, Component.baseY(placed), placed.y / 16f,
+                (placed.x + footprint.getWidth()) / 16f, Component.baseY(placed) + height, (placed.y + footprint.getHeight()) / 16f
         );
     }
 }
