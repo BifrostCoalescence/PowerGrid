@@ -19,6 +19,7 @@ import com.simibubi.create.AllItems;
 import com.simibubi.create.api.data.recipe.DeployingRecipeGen;
 import net.minecraft.data.PackOutput;
 import org.patryk3211.powergrid.PowerGrid;
+import org.patryk3211.powergrid.collections.ModdedBlocks;
 import org.patryk3211.powergrid.collections.ModdedItems;
 
 @SuppressWarnings("unused")
@@ -30,6 +31,12 @@ public class DeployerApplicationRecipes extends DeployingRecipeGen {
             .require(ModdedItems.CIRCUIT_SCHEMATIC)
             .toolNotConsumed()
             .output(ModdedItems.CIRCUIT_SCHEMATIC)
+    ),
+
+    PANEL_ENCASE = create("panel_encase", b -> b
+            .require(ModdedBlocks.CIRCUIT_BOARD)
+            .require(ModdedBlocks.CONDUCTIVE_CASING)
+            .output(ModdedBlocks.CONTROL_PANEL)
     ),
 
     STRING_LIGHT_CORD = create("string_light_cord", b -> b

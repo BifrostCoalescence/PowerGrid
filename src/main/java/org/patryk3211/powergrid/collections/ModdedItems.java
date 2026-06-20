@@ -27,7 +27,6 @@ import net.minecraft.world.item.Item;
 import org.patryk3211.powergrid.AbstractPowerGridRegistrate;
 import org.patryk3211.powergrid.PowerGrid;
 import org.patryk3211.powergrid.circuits.circuitboard.IncompleteCircuitItem;
-import org.patryk3211.powergrid.circuits.circuitboard.IncompleteControlPanelItem;
 import org.patryk3211.powergrid.circuits.schematic.CircuitSchematicItem;
 import org.patryk3211.powergrid.electricity.light.bulb.GrowthLamp;
 import org.patryk3211.powergrid.electricity.light.bulb.LightBulb;
@@ -186,12 +185,6 @@ public class ModdedItems {
 
     public static final ItemEntry<SequencedAssemblyItem> INCOMPLETE_TRANSFORMER_CORE = sequencedIngredient("incomplete_transformer_core");
     public static final ItemEntry<SequencedAssemblyItem> INCOMPLETE_ELECTRICAL_GIZMO = sequencedIngredient("incomplete_electrical_gizmo");
-    public static final ItemEntry<SequencedAssemblyItem> INCOMPLETE_UNETCHED_CONTROL_PANEL = sequencedIngredientBuilder("incomplete_unetched_control_panel")
-            .tag(ModdedTags.Item.CIRCUIT_SCHEMATIC_HOLDER.tag)
-            .register();
-    public static final ItemEntry<IncompleteControlPanelItem> INCOMPLETE_CONTROL_PANEL = REGISTRATE.item("incomplete_control_panel", IncompleteControlPanelItem::new)
-            .tag(ModdedTags.Item.CIRCUIT_SCHEMATIC_HOLDER.tag)
-            .register();
     public static final ItemEntry<SequencedAssemblyItem> INCOMPLETE_UNETCHED_CIRCUIT = sequencedIngredientBuilder("incomplete_unetched_circuit")
             .tag(ModdedTags.Item.CIRCUIT_SCHEMATIC_HOLDER.tag)
             .register();

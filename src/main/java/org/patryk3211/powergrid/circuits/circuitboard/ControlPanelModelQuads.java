@@ -15,37 +15,10 @@
  */
 package org.patryk3211.powergrid.circuits.circuitboard;
 
-import it.unimi.dsi.fastutil.objects.Object2ObjectArrayMap;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
-import java.util.Map;
 
 @Environment(EnvType.CLIENT)
 public class ControlPanelModelQuads {
-    private final Map<CacheKey, List<BakedQuad>> quads = new Object2ObjectArrayMap<>(8);
-    public BlockState state;
 
-    @Nullable
-    public List<BakedQuad> getQuads(BlockState state, @Nullable Direction side, @Nullable RenderType type) {
-        if(this.state != state)
-            return null;
-        return quads.get(new CacheKey(side, type));
-    }
-
-    public void putQuads(BlockState state, @Nullable Direction side, @Nullable RenderType type, List<BakedQuad> quads) {
-        if(this.state != state) {
-            this.state = state;
-            this.quads.clear();
-        }
-        this.quads.put(new CacheKey(side, type), quads);
-    }
-
-    private record CacheKey(@Nullable Direction side, @Nullable RenderType type) { }
 }
