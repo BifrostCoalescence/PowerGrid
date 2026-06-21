@@ -105,7 +105,7 @@ public class BaseCircuitBE<Q extends BaseCircuitModelQuads, B extends BaseCircui
                 terminalCountCache != terminalCount || interactableCountCache != interactableCount) {
             for (int i = 0; i < terminalCount; i++) {
                 var terminal = terminal(state, i);
-                newShape = Shapes.or(((TerminalBoundingBox) terminal).getShape().move(0, terminalOffset(), 0), newShape);
+                newShape = Shapes.or(((TerminalBoundingBox) terminal).getShape(), newShape);
             }
             for (var placed : getComponents(IInteractableComponent.class)) {
                 var dynamic = (IInteractableComponent) placed.component;
@@ -399,7 +399,8 @@ public class BaseCircuitBE<Q extends BaseCircuitModelQuads, B extends BaseCircui
         var terminal = baked.terminals.get(index);
         return terminal
                 .rotateAroundX(-CircuitBoardBlock.getAngleX(state))
-                .rotateAroundY(-CircuitBoardBlock.getAngleY(state));
+                .rotateAroundY(-CircuitBoardBlock.getAngleY(state))
+                .offset(0, terminalOffset(), 0);
     }
 
     @Override

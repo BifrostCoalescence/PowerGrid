@@ -33,6 +33,7 @@ import org.patryk3211.powergrid.network.SimplePacket;
 import org.patryk3211.powergrid.utility.ClientSideAccess;
 
 import java.util.function.Supplier;
+import java.util.Optional;
 
 public class UpdateComponentBiPacket implements SimplePacket {
     private final BlockPos pos;
@@ -49,7 +50,7 @@ public class UpdateComponentBiPacket implements SimplePacket {
         component.getEntry(property).write(propertyValue);
     }
 
-    public UpdateComponentBiPacket(CircuitBoardBlockEntity be, PlacedComponent component, ResourceLocation propertyId) {
+    public UpdateComponentBiPacket(BaseCircuitBE be, PlacedComponent component, ResourceLocation propertyId) {
         pos = be.getBlockPos();
         componentId = be.getSchematic().getId(component);
         assert componentId >= 0;
@@ -74,8 +75,12 @@ public class UpdateComponentBiPacket implements SimplePacket {
     }
 
     public void handle(Level world) {
-        var be = world.getBlockEntity(pos, ModdedBlockEntities.CIRCUIT_BOARD.get());
-        be.ifPresent(circuit -> {
+        var circuitBe = world.getBlockEntity(pos, ModdedBlockEntities.CIRCUIT_BOARD.get()).map((be) -> (BaseCircuitBE) be);
+        var panelBe = world.getBlockEntity(pos, ModdedBlockEntities.CONTROL_PANEL.get()).map((be) -> (BaseCircuitBE) be);
+        if (circuitBe.isEmpty()) {
+            circuitBe = panelBe;
+        }
+        circuitBe.ifPresent(circuit -> {
             var placed = circuit.getSchematic().components().get(componentId);
             var entry = placed.getEntry(propertyId);
             entry.read(propertyValue);
