@@ -65,6 +65,7 @@ import org.patryk3211.powergrid.electricity.base.ElectricBlock;
 import org.patryk3211.powergrid.utility.Lang;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Collection;
 import java.util.List;
 
 @ParametersAreNonnullByDefault
@@ -200,7 +201,8 @@ public class BaseCircuitBlock<B extends BaseCircuitBE> extends ElectricBlock imp
     public int getSignal(BlockState state, BlockGetter world, BlockPos pos, Direction direction) {
         var output = new MutableInt();
         withBlockEntityDo(world, pos, be -> {
-            for(PlacedComponent placed : be.getComponents(IRedstoneComponent.class)) {
+            Collection<PlacedComponent> components = be.getComponents(IRedstoneComponent.class);
+            for(var placed : components) {
                 var redstone = (IRedstoneComponent) placed.component;
                 if(!redstone.isEmitter())
                     continue;
@@ -323,7 +325,8 @@ public class BaseCircuitBlock<B extends BaseCircuitBE> extends ElectricBlock imp
             if(dir == null)
                 return;
             var power = world.getSignal(sourcePos, dir);
-            for(var placed : be.getComponents(IRedstoneComponent.class)) {
+            Collection<PlacedComponent> components = be.getComponents(IRedstoneComponent.class);
+            for(var placed : components) {
                 var redstone = (IRedstoneComponent) placed.component;
                 if(!redstone.isReceiver())
                     continue;
@@ -344,7 +347,8 @@ public class BaseCircuitBlock<B extends BaseCircuitBE> extends ElectricBlock imp
             var hitLocalPos = hit.getLocation().subtract(pos.getX(), pos.getY(), pos.getZ());
             hitLocalPos = VecHelper.rotateCentered(hitLocalPos, -getAngleY(state), Direction.Axis.Y);
             hitLocalPos = VecHelper.rotateCentered(hitLocalPos, -getAngleX(state), Direction.Axis.X);
-            for(var placed : be.getComponents(IInteractableComponent.class)) {
+            Collection<PlacedComponent> components = be.getComponents(IInteractableComponent.class);
+            for(var placed : components) {
                 var dynamic = (IInteractableComponent) placed.component;
                 var outline = dynamic.getShape(placed).bounds().inflate(1 / 32f);
                 if(!outline.contains(hitLocalPos))

@@ -23,4 +23,9 @@ public class ControlPanelBlockEntity extends BaseCircuitBE<ControlPanelModelQuad
     public ControlPanelBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
+
+    @Override
+    protected float terminalOffset() {
+        return 2 / 16;
+    }
 }

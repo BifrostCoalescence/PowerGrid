@@ -18,11 +18,11 @@ package org.patryk3211.powergrid.circuits.editor;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.MenuType;
-import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlockEntity;
+import org.patryk3211.powergrid.circuits.circuitboard.BaseCircuitBE;
 import org.patryk3211.powergrid.collections.ModdedMenus;
 
-public class CircuitBoardEditMenu extends CircuitEditMenu<CircuitBoardBlockEntity> {
-    public CircuitBoardEditMenu(MenuType<?> type, int id, Inventory inv, CircuitBoardBlockEntity contentHolder) {
+public class CircuitBoardEditMenu extends CircuitEditMenu<BaseCircuitBE> {
+    public CircuitBoardEditMenu(MenuType<?> type, int id, Inventory inv, BaseCircuitBE contentHolder) {
         super(type, id, inv, contentHolder);
     }
 
@@ -31,11 +31,11 @@ public class CircuitBoardEditMenu extends CircuitEditMenu<CircuitBoardBlockEntit
     }
 
     @Override
-    protected Class<CircuitBoardBlockEntity> clazz() {
-        return CircuitBoardBlockEntity.class;
+    protected Class<BaseCircuitBE> clazz() {
+        return BaseCircuitBE.class;
     }
 
-    public static CircuitBoardEditMenu create(int id, Inventory inv, CircuitBoardBlockEntity be) {
+    public static CircuitBoardEditMenu create(int id, Inventory inv, BaseCircuitBE be) {
         return new CircuitBoardEditMenu(ModdedMenus.CIRCUIT_BOARD_EDIT.get(), id, inv, be);
     }
 }

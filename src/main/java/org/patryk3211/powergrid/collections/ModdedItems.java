@@ -97,9 +97,6 @@ public class ModdedItems {
     public static final ItemEntry<Item> EMPTY_CIRCUIT = REGISTRATE.item("empty_circuit", Item::new)
             .register();
 
-    public static final ItemEntry<Item> EMPTY_CONTROL_PANEL = REGISTRATE.item("empty_control_panel", Item::new)
-            .register();
-
     public static final ItemEntry<DebugItem> DEBUG_ITEM = REGISTRATE.item("debug", DebugItem::new).register();
 
     public static final ItemEntry<LvLightBulb> LV_LIGHT_BULB = REGISTRATE.item("lv_light_bulb", LvLightBulb::new)

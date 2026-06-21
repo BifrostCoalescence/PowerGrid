@@ -19,7 +19,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlockEntity;
+import org.patryk3211.powergrid.circuits.circuitboard.BaseCircuitBE;
 import org.patryk3211.powergrid.circuits.components.Component;
 import org.patryk3211.powergrid.circuits.components.ComponentRegistry;
 import org.patryk3211.powergrid.circuits.components.properties.ComponentProperty;
@@ -159,7 +159,7 @@ public class PlacedComponent {
 
     public void notifyClients(ComponentProperty<?> property) {
         onServerWorld(() -> world -> {
-            var circuit = (CircuitBoardBlockEntity) world.getBlockEntity(pos);
+            var circuit = (BaseCircuitBE) world.getBlockEntity(pos);
             if(circuit == null)
                 return;
             ModdedPackets.sendToClientsTracking(new UpdateComponentBiPacket(circuit, this, property), circuit);
@@ -168,7 +168,7 @@ public class PlacedComponent {
 
     public void notifyClients(ResourceLocation propertyId) {
         onServerWorld(() -> world -> {
-            var circuit = (CircuitBoardBlockEntity) world.getBlockEntity(pos);
+            var circuit = (BaseCircuitBE) world.getBlockEntity(pos);
             if(circuit == null)
                 return;
             ModdedPackets.sendToClientsTracking(new UpdateComponentBiPacket(circuit, this, propertyId), circuit);

@@ -28,7 +28,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 import org.patryk3211.powergrid.PowerGrid;
-import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlockEntity;
+import org.patryk3211.powergrid.circuits.circuitboard.BaseCircuitBE;
 import org.patryk3211.powergrid.circuits.components.properties.ComponentProperty;
 import org.patryk3211.powergrid.circuits.components.properties.IntProperty;
 import org.patryk3211.powergrid.circuits.components.properties.StringProperty;
@@ -109,7 +109,7 @@ public abstract class GaugeComponent extends OrientableComponent implements IRed
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void render(CircuitBoardBlockEntity be, PlacedComponent placed, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
+    public <E extends BaseCircuitBE> void render(E be, PlacedComponent placed, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
         if(placed.customData instanceof RenderData data) {
             var value = Mth.lerp(partialTicks, data.prevState, data.state);
 

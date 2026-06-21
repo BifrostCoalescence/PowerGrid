@@ -24,6 +24,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import org.patryk3211.powergrid.circuits.circuitboard.BaseCircuitBE;
 import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlockEntity;
 import org.patryk3211.powergrid.circuits.components.properties.ComponentProperty;
 import org.patryk3211.powergrid.circuits.schematic.PlacedComponent;
@@ -39,7 +40,7 @@ public class UpdateComponentBiPacket implements SimplePacket {
     private final ResourceLocation propertyId;
     private final CompoundTag propertyValue;
 
-    public UpdateComponentBiPacket(CircuitBoardBlockEntity be, PlacedComponent component, ComponentProperty<?> property) {
+    public UpdateComponentBiPacket(BaseCircuitBE be, PlacedComponent component, ComponentProperty<?> property) {
         pos = be.getBlockPos();
         componentId = be.getSchematic().getId(component);
         assert componentId >= 0;

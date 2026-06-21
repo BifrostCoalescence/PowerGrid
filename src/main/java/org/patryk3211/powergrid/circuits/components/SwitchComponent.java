@@ -22,7 +22,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.patryk3211.powergrid.PowerGrid;
-import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlockEntity;
+import org.patryk3211.powergrid.circuits.circuitboard.BaseCircuitBE;
 import org.patryk3211.powergrid.circuits.circuitboard.ComponentCircuitBuilder;
 import org.patryk3211.powergrid.circuits.components.properties.BooleanProperty;
 import org.patryk3211.powergrid.circuits.components.properties.ComponentProperty;
@@ -64,7 +64,7 @@ public class SwitchComponent extends OrientableComponent implements IInteractabl
     }
 
     @Override
-    public InteractionResult use(CircuitBoardBlockEntity be, PlacedComponent placed, Player player) {
+    public <E extends BaseCircuitBE> InteractionResult use(E be, PlacedComponent placed, Player player) {
         var newState = !placed.get(STATE);
         placed.set(STATE, newState);
 

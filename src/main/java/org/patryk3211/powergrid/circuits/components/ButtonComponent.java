@@ -22,7 +22,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.patryk3211.powergrid.PowerGrid;
-import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlockEntity;
+import org.patryk3211.powergrid.circuits.circuitboard.BaseCircuitBE;
 import org.patryk3211.powergrid.circuits.circuitboard.ComponentCircuitBuilder;
 import org.patryk3211.powergrid.circuits.components.properties.ComponentProperty;
 import org.patryk3211.powergrid.circuits.components.properties.IntProperty;
@@ -98,7 +98,7 @@ public class ButtonComponent extends OrientableComponent implements IInteractabl
     }
 
     @Override
-    public InteractionResult use(CircuitBoardBlockEntity be, PlacedComponent component, Player player) {
+    public <E extends BaseCircuitBE> InteractionResult use(E be, PlacedComponent component, Player player) {
         if(component.get(STATE) == 0) {
             component.onServerWorld(() -> world -> ModdedSoundEvents.MICROBUTTON_ON.playOnServer(world, component.getPos()));
             component.onClientWorld(() -> world -> modelChanged(component.getPos()));

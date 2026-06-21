@@ -105,11 +105,11 @@ public class BaseCircuitBE<Q extends BaseCircuitModelQuads, B extends BaseCircui
                 terminalCountCache != terminalCount || interactableCountCache != interactableCount) {
             for (int i = 0; i < terminalCount; i++) {
                 var terminal = terminal(state, i);
-                newShape = Shapes.or(((TerminalBoundingBox) terminal).getShape(), newShape);
+                newShape = Shapes.or(((TerminalBoundingBox) terminal).getShape().move(0, terminalOffset(), 0), newShape);
             }
             for (var placed : getComponents(IInteractableComponent.class)) {
                 var dynamic = (IInteractableComponent) placed.component;
-                newShape = Shapes.or(BaseCircuitBlock.rotate(dynamic.getShape(placed), x, y), newShape);
+                newShape = Shapes.or(BaseCircuitBlock.rotate(dynamic.getShape(placed).move(0, interactOffset(), 0), x, y), newShape);
             }
             shapeCache = newShape;
             angleXCache = x;
@@ -223,8 +223,8 @@ public class BaseCircuitBE<Q extends BaseCircuitModelQuads, B extends BaseCircui
             return;
 
         var wire = makeWire(be.electricBehaviour, viaNode, thisViaNode);
-        edgeViadWires.computeIfAbsent(be, $ -> (List<ElectricWire>) new ArrayList<>()).add(wire);
-        be.edgeViadWires.computeIfAbsent(this, $ ->(List<ElectricWire>) new ArrayList<>()).add(wire);
+        edgeViadWires.computeIfAbsent(be, $ -> (List<ElectricWire>) new ArrayList<ElectricWire>()).add(wire);
+        ((List<ElectricWire>) be.edgeViadWires.computeIfAbsent(this, $ ->(List<ElectricWire>) new ArrayList<ElectricWire>())).add(wire);
     }
 
     private void processNeighbor(@NotNull BaseCircuitBE be, Orientation expectedOrientation) {
@@ -537,5 +537,13 @@ public class BaseCircuitBE<Q extends BaseCircuitModelQuads, B extends BaseCircui
         for(var unit : baked.thermalUnits) {
             unit.setTemperature(buffer.readFloat());
         }
+    }
+
+    protected float terminalOffset() {
+        return 0;
+    }
+
+    protected float interactOffset() {
+        return 0;
     }
 }

@@ -30,6 +30,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.apache.logging.log4j.util.TriConsumer;
 import org.patryk3211.powergrid.PowerGrid;
 import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlock;
+import org.patryk3211.powergrid.circuits.circuitboard.ControlPanelBlock;
 import org.patryk3211.powergrid.circuits.editor.CircuitDesignTableBlock;
 import org.patryk3211.powergrid.electricity.basinheater.BasinHeaterBlock;
 import org.patryk3211.powergrid.electricity.carbonpile.CarbonPileBlock;
@@ -459,6 +460,12 @@ public class DataProviderUtilityImpl {
             }
             return builder.build();
         });
+    }
+
+
+    public static NonNullBiConsumer<DataGenContext<Block, ControlPanelBlock>, RegistrateBlockstateProvider> controlPanel() {
+        return (ctx, prov) ->
+                prov.simpleBlock(ctx.getEntry(), unchecked("control_panel"));
     }
 
     public static NonNullBiConsumer<DataGenContext<Block, CircuitBoardBlock>, RegistrateBlockstateProvider> circuitBoard() {

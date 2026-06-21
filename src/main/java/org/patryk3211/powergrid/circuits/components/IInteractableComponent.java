@@ -20,13 +20,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlockEntity;
+import org.patryk3211.powergrid.circuits.circuitboard.BaseCircuitBE;
 import org.patryk3211.powergrid.circuits.schematic.PlacedComponent;
 
 public interface IInteractableComponent {
     VoxelShape getShape(@NotNull PlacedComponent placed);
 
-    InteractionResult use(CircuitBoardBlockEntity be, PlacedComponent component, Player player);
+    <E extends BaseCircuitBE> InteractionResult use(E be, PlacedComponent component, Player player);
 
     static VoxelShape extrudedFootprint(@NotNull PlacedComponent placed, float height) {
         var footprint = placed.footprint();

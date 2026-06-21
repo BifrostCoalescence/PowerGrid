@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "powergrid:circuit_board"
+    },
+    {
+      "item": "powergrid:conductive_casing"
+    }
+  ],
+  "results": [
+    {
+      "item": "powergrid:control_panel"
+    }
+  ]
+}

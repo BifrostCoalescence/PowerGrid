@@ -24,6 +24,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlock;
+import org.patryk3211.powergrid.circuits.circuitboard.ControlPanelBlock;
 import org.patryk3211.powergrid.circuits.editor.CircuitDesignTableBlock;
 import org.patryk3211.powergrid.electricity.electricswitch.HvSwitchBlock;
 import org.patryk3211.powergrid.electricity.electricswitch.SwitchBlock;
@@ -132,6 +133,11 @@ public class DataProviderUtility {
 
     @ExpectPlatform
     public static NonNullBiConsumer<DataGenContext<Block, CircuitBoardBlock>, RegistrateBlockstateProvider> circuitBoard() {
+        throw new AssertionError();
+    }
+
+    @ExpectPlatform
+    public static NonNullBiConsumer<DataGenContext<Block, ControlPanelBlock>, RegistrateBlockstateProvider> controlPanel() {
         throw new AssertionError();
     }
 

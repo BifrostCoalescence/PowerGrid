@@ -23,8 +23,9 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import org.patryk3211.powergrid.circuits.components.IRenderedComponent;
+import org.patryk3211.powergrid.circuits.schematic.PlacedComponent;
 
-import java.lang.reflect.Method;
+import java.util.Collection;
 
 @Environment(EnvType.CLIENT)
 public class BaseCircuitRenderer<B extends BaseCircuitBlock, E extends BaseCircuitBE> extends SafeBlockEntityRenderer<E> {
@@ -34,8 +35,8 @@ public class BaseCircuitRenderer<B extends BaseCircuitBlock, E extends BaseCircu
     }
 
     @Override
-    protected void renderSafe(CircuitBoardBlockEntity be, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
-        var components = be.getComponents(IRenderedComponent.class);
+    protected void renderSafe(E be, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
+        Collection<PlacedComponent> components = be.getComponents(IRenderedComponent.class);
         if(components.isEmpty())
             return;
 

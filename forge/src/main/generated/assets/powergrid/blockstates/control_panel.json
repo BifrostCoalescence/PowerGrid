@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "powergrid:control_panel"
+    }
+  }
+}

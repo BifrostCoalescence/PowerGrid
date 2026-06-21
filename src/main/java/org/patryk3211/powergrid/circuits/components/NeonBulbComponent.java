@@ -27,7 +27,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import org.jetbrains.annotations.NotNull;
 import org.patryk3211.powergrid.PowerGrid;
-import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlockEntity;
+import org.patryk3211.powergrid.circuits.circuitboard.BaseCircuitBE;
 import org.patryk3211.powergrid.circuits.circuitboard.ComponentCircuitBuilder;
 import org.patryk3211.powergrid.circuits.components.properties.BooleanProperty;
 import org.patryk3211.powergrid.circuits.components.properties.CalculatedProperty;
@@ -160,7 +160,7 @@ public class NeonBulbComponent extends OrientableComponent implements IRenderedC
     }
 
     @Override
-    public void render(CircuitBoardBlockEntity be, PlacedComponent placed, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
+    public <E extends BaseCircuitBE> void render(E be, PlacedComponent placed, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
         // Render the bulb here to avoid adding all circuit board quads to translucent layer.
         var bulb = CachedBuffers.partial(ModdedPartialModels.NEON_TUBE_BULB, be.getBlockState());
         bulb.light(light).renderInto(ms, bufferSource.getBuffer(RenderType.translucent()));

@@ -19,7 +19,7 @@ import com.simibubi.create.content.kinetics.fan.AirCurrent;
 import com.simibubi.create.content.kinetics.fan.IAirCurrentSource;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.minecraft.core.Direction;
-import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlockEntity;
+import org.patryk3211.powergrid.circuits.circuitboard.BaseCircuitBE;
 import org.patryk3211.powergrid.collections.ModdedConfigs;
 import org.patryk3211.powergrid.electricity.base.ThermalBehaviour;
 import org.spongepowered.asm.mixin.Final;
@@ -42,7 +42,7 @@ public abstract class AirCurrentMixin {
     @Unique
     private final List<ThermalBehaviour> powerGrid$affectedThermals = new ArrayList<>();
     @Unique
-    private final List<CircuitBoardBlockEntity> powerGrid$affectedCircuits = new ArrayList<>();
+    private final List<BaseCircuitBE> powerGrid$affectedCircuits = new ArrayList<>();
 
     @Inject(method = "rebuild()V", at = @At("HEAD"))
     private void powerGrid$rebuildHead(CallbackInfo ci) {

@@ -30,7 +30,7 @@ import net.minecraft.world.item.DyeColor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.patryk3211.powergrid.PowerGrid;
-import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlockEntity;
+import org.patryk3211.powergrid.circuits.circuitboard.BaseCircuitBE;
 import org.patryk3211.powergrid.circuits.circuitboard.ComponentCircuitBuilder;
 import org.patryk3211.powergrid.circuits.components.properties.ComponentProperty;
 import org.patryk3211.powergrid.circuits.components.properties.EnumProperty;
@@ -91,7 +91,7 @@ public class LabelComponent extends Component implements IRenderedComponent, IGo
     }
 
     @Override
-    public void render(CircuitBoardBlockEntity be, PlacedComponent placed, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
+    public <E extends BaseCircuitBE> void render(E be, PlacedComponent placed, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
         for (int i = 1; i < placed.get(SIZE); i++) {
             var tint = SEGMENT_TINT[i];
             var model = CachedBuffers.partial(ModdedPartialModels.LABEL, be.getBlockState());

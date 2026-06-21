@@ -31,7 +31,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 import org.patryk3211.powergrid.PowerGrid;
-import org.patryk3211.powergrid.circuits.circuitboard.CircuitBoardBlockEntity;
+import org.patryk3211.powergrid.circuits.circuitboard.BaseCircuitBE;
 import org.patryk3211.powergrid.circuits.circuitboard.ComponentCircuitBuilder;
 import org.patryk3211.powergrid.circuits.components.properties.ComponentProperty;
 import org.patryk3211.powergrid.circuits.components.properties.FloatProperty;
@@ -89,7 +89,7 @@ public class PotentiometerComponent extends OrientableComponent implements IInte
     }
 
     @Override
-    public InteractionResult use(CircuitBoardBlockEntity be, PlacedComponent component, Player player) {
+    public <E extends BaseCircuitBE> InteractionResult use(E be, PlacedComponent component, Player player) {
         component.onClientWorld(() -> world -> {
             var value = component.get(VALUE);
             if(BOARD == null) {
@@ -127,7 +127,7 @@ public class PotentiometerComponent extends OrientableComponent implements IInte
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void render(CircuitBoardBlockEntity be, PlacedComponent placed, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
+    public <E extends BaseCircuitBE> void render(E be, PlacedComponent placed, float partialTicks, PoseStack ms, MultiBufferSource bufferSource, int light, int overlay) {
         var buffer = CachedBuffers.partial(ModdedPartialModels.POTENTIOMETER_KNOB, be.getBlockState());
         var angle = 135 - 135 * 2 * (placed.get(VALUE) / 100.0f);
         buffer

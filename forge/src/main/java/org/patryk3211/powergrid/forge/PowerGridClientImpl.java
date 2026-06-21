@@ -28,6 +28,8 @@ import org.patryk3211.powergrid.PowerGridClient;
 import org.patryk3211.powergrid.circuits.components.ComponentModels;
 import org.patryk3211.powergrid.circuits.components.forge.CircuitBoardModel;
 import org.patryk3211.powergrid.circuits.components.forge.CircuitBoardModelLoader;
+import org.patryk3211.powergrid.circuits.components.forge.ControlPanelModel;
+import org.patryk3211.powergrid.circuits.components.forge.ControlPanelModelLoader;
 import org.patryk3211.powergrid.collections.forge.ModdedKeysImpl;
 import org.patryk3211.powergrid.collections.forge.ModdedParticlesImpl;
 import org.patryk3211.powergrid.electricity.portablebattery.forge.BatteryArmorLayerImpl;
@@ -57,11 +59,13 @@ public class PowerGridClientImpl {
         var componentModels = ComponentModels.collectRawIds();
         componentModels.forEach(event::register);
         event.register(CircuitBoardModel.BASE_MODEL);
+        event.register(ControlPanelModel.BASE_MODEL);
     }
 
     @SubscribeEvent
     public static void modelLoaders(ModelEvent.RegisterGeometryLoaders event) {
         event.register("circuit_board", new CircuitBoardModelLoader());
+        event.register("control_panel", new ControlPanelModelLoader());
     }
 
     @SubscribeEvent

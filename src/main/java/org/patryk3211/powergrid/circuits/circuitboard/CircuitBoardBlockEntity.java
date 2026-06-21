@@ -23,4 +23,9 @@ public class CircuitBoardBlockEntity extends BaseCircuitBE<CircuitBoardModelQuad
     public CircuitBoardBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
+
+    @Override
+    protected float interactOffset() {
+        return -2 / 16;
+    }
 }
