@@ -402,7 +402,7 @@ public class BaseCircuitBlock<B extends BaseCircuitBE> extends ElectricBlock imp
 
     @Override
     public BlockEntityType<? extends B> getBlockEntityType() {
-       return null; 
+        return null;
     }
 
     @Override

@@ -69,7 +69,7 @@ public abstract class AirCurrentMixin {
                 thermal.addCoolingMultiplier((AirCurrent) (Object) this, factor * initialStrength);
                 powerGrid$affectedThermals.add(thermal);
             }
-            if(world.getBlockEntity(pos) instanceof CircuitBoardBlockEntity circuit) {
+            if(world.getBlockEntity(pos) instanceof BaseCircuitBE circuit) {
                 circuit.addCoolingMultiplier((AirCurrent) (Object) this, factor * initialStrength);
                 powerGrid$affectedCircuits.add(circuit);
             }
