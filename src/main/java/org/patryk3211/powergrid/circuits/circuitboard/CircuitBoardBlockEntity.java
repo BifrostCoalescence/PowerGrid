@@ -26,6 +26,6 @@ public class CircuitBoardBlockEntity extends BaseCircuitBE<CircuitBoardModelQuad
 
     @Override
     protected float interactOffset() {
-        return -2 / 16;
+        return -2 / 16f;
     }
 }

@@ -75,12 +75,9 @@ public class UpdateComponentBiPacket implements SimplePacket {
     }
 
     public void handle(Level world) {
-        var circuitBe = world.getBlockEntity(pos, ModdedBlockEntities.CIRCUIT_BOARD.get()).map((be) -> (BaseCircuitBE) be);
-        var panelBe = world.getBlockEntity(pos, ModdedBlockEntities.CONTROL_PANEL.get()).map((be) -> (BaseCircuitBE) be);
-        if (circuitBe.isEmpty()) {
-            circuitBe = panelBe;
-        }
-        circuitBe.ifPresent(circuit -> {
+        var be = world.getBlockEntity(pos);
+        
+        if (be instanceof BaseCircuitBE circuit) {
             var placed = circuit.getSchematic().components().get(componentId);
             var entry = placed.getEntry(propertyId);
             entry.read(propertyValue);
@@ -89,7 +86,7 @@ public class UpdateComponentBiPacket implements SimplePacket {
                 // Server must broadcast this update to all clients
                 placed.notifyClients(propertyId);
             }
-        });
+        }
     }
 
     @Environment(EnvType.CLIENT)

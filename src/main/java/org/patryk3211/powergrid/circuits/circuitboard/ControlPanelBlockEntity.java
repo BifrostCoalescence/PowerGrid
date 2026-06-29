@@ -26,6 +26,6 @@ public class ControlPanelBlockEntity extends BaseCircuitBE<ControlPanelModelQuad
 
     @Override
     protected float terminalOffset() {
-        return 2 / 16;
+        return 2 / 16f;
     }
 }
